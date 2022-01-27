@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>LUCA</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+ 
+  <form (ngSubmit)="login()" [formGroup]="credentials">
+    <div class="input-group">
+      <ion-item>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+      <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+        <span *ngIf="email.errors?.required">Email giriniz</span>
+        <span *ngIf="email.errors?.email">Email geçersiz</span>
+      </div>
+      <ion-item>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      </ion-item>
+      <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+        <span *ngIf="password.errors?.required">Şifre giriniz</span>
+        <span *ngIf="password.errors?.minlength">Şifre en az 6 karakterli olmalıdır</span>
+      </div>
+    </div>
+ 
+    <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Giriş Yap</ion-button>
+    <ion-button type="button" expand="block" color="light" fill="clear">Üye değil misiniz? Üye olun!
+    </ion-button>
+ 
+    <ion-button type="button" expand="block" color="tertiary">
+      <ion-icon name="logo-google" slot="start"></ion-icon>
+    Google ile giriş yap
+    </ion-button>
+    <ion-button type="button" expand="block" color="tertiary">
+      <ion-icon name="logo-facebook" slot="start"></ion-icon>
+      Facebook ile giriş yap
+    </ion-button>
+  </form>
+</ion-content>
